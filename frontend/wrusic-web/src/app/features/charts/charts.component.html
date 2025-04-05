@@ -1,0 +1,37 @@
+<div class="charts-container">
+  <div class="charts-header">
+    <h2>Top Tracks</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Country</mat-label>
+      <mat-select [value]="selectedCountry" (selectionChange)="onCountryChange($event.value)">
+        <mat-option *ngFor="let country of countries" [value]="country.code">
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <mat-icon>error_outline</mat-icon>
+    <p>{{ error }}</p>
+  </div>
+
+  <div class="tracks-list" *ngIf="!loading && !error">
+    <mat-card class="track-card" *ngFor="let track of topTracks; let i = index">
+      <div class="track-number">{{ i + 1 }}</div>
+      <img [src]="track.imageUrl" [alt]="track.title" class="track-image">
+      <div class="track-info">
+        <h3>{{ track.title }}</h3>
+        <p class="artist-name">{{ track.artistName }}</p>
+        <p class="album-name">{{ track.albumName }}</p>
+      </div>
+      <button mat-icon-button class="play-button" *ngIf="track.previewUrl" (click)="playPreview(track)">
+        <mat-icon>play_circle</mat-icon>
+      </button>
+    </mat-card>
+  </div>
+</div> 

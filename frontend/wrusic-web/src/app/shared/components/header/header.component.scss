@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mat-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+}
+
+.logo-text {
+  margin-left: 8px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  
+  mat-icon {
+    margin-right: 4px;
+  }
+} 

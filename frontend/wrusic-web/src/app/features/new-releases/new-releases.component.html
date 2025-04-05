@@ -1,0 +1,23 @@
+<div class="new-releases-container">
+  <h2>New Releases</h2>
+  
+  <div *ngIf="loading" class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <mat-icon>error_outline</mat-icon>
+    <p>{{ error }}</p>
+  </div>
+
+  <div class="albums-grid" *ngIf="!loading && !error">
+    <mat-card class="album-card" *ngFor="let album of newReleases">
+      <img mat-card-image [src]="album.coverUrl" [alt]="album.title">
+      <mat-card-content>
+        <h3>{{ album.title }}</h3>
+        <p class="artist-name">{{ album.artistName }}</p>
+        <p class="release-date">Released: {{ album.releaseDate | date }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

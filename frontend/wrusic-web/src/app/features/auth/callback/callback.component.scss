@@ -1,0 +1,74 @@
+.callback-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1DB954 0%, #191414 100%);
+  padding: 20px;
+}
+
+.callback-card {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+
+  h2 {
+    margin: 0 0 24px;
+    color: #191414;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  p {
+    color: #666;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  ::ng-deep .mat-progress-spinner circle {
+    stroke: #1DB954;
+  }
+}
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  mat-icon {
+    color: #d32f2f;
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  p {
+    color: #d32f2f;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  button {
+    margin-top: 8px;
+    background-color: #1DB954;
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: darken(#1DB954, 5%);
+    }
+  }
+} 

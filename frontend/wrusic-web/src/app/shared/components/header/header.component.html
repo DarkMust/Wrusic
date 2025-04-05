@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="navigateToHome()">
+    <mat-icon>music_note</mat-icon>
+    <span class="logo-text">Wrusic</span>
+  </button>
+
+  <span class="spacer"></span>
+
+  <nav>
+    <button mat-button (click)="navigateToCharts()">
+      <mat-icon>trending_up</mat-icon>
+      Charts
+    </button>
+
+    <button mat-button (click)="navigateToReleases()">
+      <mat-icon>new_releases</mat-icon>
+      New Releases
+    </button>
+
+    <button mat-button (click)="navigateToArtists()">
+      <mat-icon>person</mat-icon>
+      Artists
+    </button>
+
+    <button mat-button (click)="navigateToAlbums()">
+      <mat-icon>album</mat-icon>
+      Albums
+    </button>
+  </nav>
+</mat-toolbar> 

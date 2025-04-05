@@ -1,0 +1,21 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Welcome to Wrusic</h1>
+    <p>Connect with Spotify to access millions of songs</p>
+    
+    <div class="login-actions">
+      <button mat-raised-button color="primary" (click)="loginWithSpotify()" [disabled]="isLoading">
+        <mat-icon>music_note</mat-icon>
+        <span>Login with Spotify</span>
+      </button>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-spinner">
+      <mat-spinner diameter="30"></mat-spinner>
+    </div>
+  </div>
+</div> 
