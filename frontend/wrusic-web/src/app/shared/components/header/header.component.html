@@ -1,30 +1,22 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="navigateToHome()">
-    <mat-icon>music_note</mat-icon>
+<mat-toolbar class="header-toolbar">
+  <div class="logo-container" routerLink="/">
     <span class="logo-text">Wrusic</span>
-  </button>
+  </div>
 
   <span class="spacer"></span>
 
-  <nav>
-    <button mat-button (click)="navigateToCharts()">
-      <mat-icon>trending_up</mat-icon>
-      Charts
+  <nav class="nav-links">
+    <button mat-button class="nav-button" routerLink="/charts" routerLinkActive="active">
+      <span>Charts</span>
     </button>
-
-    <button mat-button (click)="navigateToReleases()">
-      <mat-icon>new_releases</mat-icon>
-      New Releases
+    <button mat-button class="nav-button" routerLink="/new-releases" routerLinkActive="active">
+      <span>New Releases</span>
     </button>
-
-    <button mat-button (click)="navigateToArtists()">
-      <mat-icon>person</mat-icon>
-      Artists
+    <button mat-button class="nav-button" routerLink="/artists" routerLinkActive="active">
+      <span>Artists</span>
     </button>
-
-    <button mat-button (click)="navigateToAlbums()">
-      <mat-icon>album</mat-icon>
-      Albums
+    <button mat-button class="nav-button" routerLink="/albums" routerLinkActive="active">
+      <span>Albums</span>
     </button>
   </nav>
 </mat-toolbar> 

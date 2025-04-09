@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MusicService, Track } from '../../core/services/music.service';
+import { CommonModule } from '@angular/common';
+import { MusicService } from '../../core/services/music.service';
+import { Track } from '../../core/models/track.model';
 
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
-  styleUrls: ['./charts.component.scss']
+  styleUrls: ['./charts.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class ChartsComponent implements OnInit {
   topTracks: Track[] = [];
@@ -38,10 +42,15 @@ export class ChartsComponent implements OnInit {
       this.audio = null;
     }
 
-    if (track.previewUrl) {
-      this.audio = new Audio(track.previewUrl);
+    if (track.preview_url) {
+      this.audio = new Audio(track.preview_url);
       this.audio.play();
     }
+  }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = 'assets/images/default-album.svg';
   }
 
   private loadTopTracks(): void {

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - wrusic-network
+
+  frontend:
+    build:
+      context: ./frontend/wrusic-web
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - wrusic-network
+
+networks:
+  wrusic-network:
+    driver: bridge 

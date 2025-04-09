@@ -1,8 +1,6 @@
 export interface Artist {
-  id?: number;
+  id: string;
   name: string;
-  bio?: string;
-  imageUrl?: string;
-  tracks?: any[];
-  albums?: any[];
+  images: { url: string }[];
+  listeners?: number;
 } 

@@ -18,9 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
@@ -38,7 +36,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatTabsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HeaderComponent
   ],
   exports: [
     CommonModule,

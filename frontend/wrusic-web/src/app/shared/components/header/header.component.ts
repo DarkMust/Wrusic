@@ -1,31 +1,19 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatToolbarModule,
+    MatIconModule
+  ]
 })
-export class HeaderComponent {
-  constructor(private router: Router) { }
-
-  navigateToHome(): void {
-    this.router.navigate(['/']);
-  }
-
-  navigateToCharts(): void {
-    this.router.navigate(['/charts']);
-  }
-
-  navigateToReleases(): void {
-    this.router.navigate(['/releases']);
-  }
-
-  navigateToArtists(): void {
-    this.router.navigate(['/artists']);
-  }
-
-  navigateToAlbums(): void {
-    this.router.navigate(['/albums']);
-  }
-} 
+export class HeaderComponent {} 

@@ -1,0 +1,89 @@
+<div class="home-container">
+  <div class="container">
+    <div class="country-selector">
+      <select class="country-select" [(ngModel)]="selectedCountry" (change)="onCountryChange($event)">
+        <option *ngFor="let country of countries" [value]="country.code">
+          {{country.name}}
+        </option>
+      </select>
+    </div>
+
+    <div class="content-grid" *ngIf="!isLoading && !error">
+      <!-- New Releases Section -->
+      <section class="section">
+        <h2 class="section-title">New Releases</h2>
+        <div class="music-grid">
+          <div class="music-card" *ngFor="let album of newReleases">
+            <img [src]="album.images[0].url" [alt]="album.name" class="music-image">
+            <h3 class="music-title">{{album.name}}</h3>
+            <p class="music-artist">{{album.artists[0].name}}</p>
+            <div class="music-details">
+              <span class="music-date">{{album.release_date | date:'mediumDate'}}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Tracks Section -->
+      <section class="section">
+        <h2 class="section-title">Top Tracks</h2>
+        <div class="music-grid">
+          <div class="music-card" *ngFor="let track of topTracks">
+            <img [src]="track.album.images[0].url" [alt]="track.name" class="music-image">
+            <h3 class="music-title">{{track.name}}</h3>
+            <p class="music-artist">{{track.artists[0].name}}</p>
+            <div class="music-details">
+              <span class="music-date">{{track.album.name}}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Albums Section -->
+      <section class="section">
+        <h2 class="section-title">Top Albums</h2>
+        <div class="music-grid">
+          <div class="music-card" *ngFor="let album of topAlbums">
+            <img [src]="album.images[0].url" [alt]="album.name" class="music-image">
+            <h3 class="music-title">{{album.name}}</h3>
+            <p class="music-artist">{{album.artists[0].name}}</p>
+            <div class="music-details">
+              <span class="music-listeners">
+                <i class="fas fa-headphones"></i>
+                Popular
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Artists Section -->
+      <section class="section">
+        <h2 class="section-title">Top Artists</h2>
+        <div class="music-grid">
+          <div class="music-card" *ngFor="let artist of topArtists">
+            <img [src]="artist.images[0].url" [alt]="artist.name" class="music-image">
+            <h3 class="music-title">{{artist.name}}</h3>
+            <div class="music-details">
+              <span class="music-listeners">
+                <i class="fas fa-users"></i>
+                {{artist.listeners | number}} listeners
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-container" *ngIf="error">
+      <p class="error-message">{{error}}</p>
+      <button class="retry-button" (click)="retryLoading()">Try Again</button>
+    </div>
+  </div>
+</div> 

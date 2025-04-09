@@ -1,37 +1,42 @@
 <div class="charts-container">
-  <div class="charts-header">
-    <h2>Top Tracks</h2>
-    <mat-form-field appearance="fill">
-      <mat-label>Select Country</mat-label>
-      <mat-select [value]="selectedCountry" (selectionChange)="onCountryChange($event.value)">
-        <mat-option *ngFor="let country of countries" [value]="country.code">
-          {{ country.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+  <div class="content-wrapper">
+    <div class="chart-header">
+      <h1>Top Charts</h1>
+      <p>Discover the most popular tracks from around the world</p>
+    </div>
 
-  <div *ngIf="loading" class="loading-spinner">
-    <mat-spinner diameter="40"></mat-spinner>
-  </div>
-
-  <div *ngIf="error" class="error-message">
-    <mat-icon>error_outline</mat-icon>
-    <p>{{ error }}</p>
-  </div>
-
-  <div class="tracks-list" *ngIf="!loading && !error">
-    <mat-card class="track-card" *ngFor="let track of topTracks; let i = index">
-      <div class="track-number">{{ i + 1 }}</div>
-      <img [src]="track.imageUrl" [alt]="track.title" class="track-image">
-      <div class="track-info">
-        <h3>{{ track.title }}</h3>
-        <p class="artist-name">{{ track.artistName }}</p>
-        <p class="album-name">{{ track.albumName }}</p>
+    <div class="chart-filters">
+      <div class="filter-group">
+        <label for="country">Select Country</label>
+        <select id="country" #countrySelect (change)="onCountryChange(countrySelect.value)">
+          <option *ngFor="let country of countries" [value]="country.code">
+            {{ country.name }}
+          </option>
+        </select>
       </div>
-      <button mat-icon-button class="play-button" *ngIf="track.previewUrl" (click)="playPreview(track)">
-        <mat-icon>play_circle</mat-icon>
-      </button>
-    </mat-card>
+    </div>
+
+    <div class="loading" *ngIf="loading">Loading...</div>
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <div class="tracks-grid" *ngIf="!loading && !error">
+      <div class="track-card" *ngFor="let track of topTracks">
+        <div class="track-image">
+          <img [src]="track.album.images[0]?.url || 'assets/images/default-album.svg'" 
+               [alt]="track.name"
+               (error)="onImageError($event)"
+               loading="lazy"
+               decoding="async">
+          <button class="play-button" (click)="playPreview(track)" *ngIf="track.preview_url">
+            <i class="fas fa-play"></i>
+          </button>
+        </div>
+        <div class="track-info">
+          <h3>{{ track.name }}</h3>
+          <p class="artist">{{ track.artists[0]?.name || 'Unknown Artist' }}</p>
+          <p class="album">{{ track.album.name }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div> 

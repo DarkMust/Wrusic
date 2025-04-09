@@ -1,7 +1,19 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
+import { AppComponent } from './app/app.component';
+import { ChartsComponent } from './app/features/charts/charts.component';
+import { NewReleasesComponent } from './app/features/new-releases/new-releases.component';
 
-import { AppModule } from './app/app.module';
-
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter([
+      { path: '', redirectTo: '/new-releases', pathMatch: 'full' },
+      { path: 'new-releases', component: NewReleasesComponent },
+      { path: 'charts', component: ChartsComponent }
+    ]),
+    provideAnimations(),
+    provideHttpClient()
+  ]
+});

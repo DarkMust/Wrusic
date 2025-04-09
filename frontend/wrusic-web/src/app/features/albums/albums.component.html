@@ -1,0 +1,25 @@
+<div class="albums-container">
+  <div class="header">
+    <h1>Albums</h1>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="albums-grid" *ngIf="!loading && !error">
+    <div class="album-card" *ngFor="let album of albums">
+      <div class="album-image">
+        <img [src]="album.images[0]?.url || 'assets/images/default-album.svg'" 
+             [alt]="album.name"
+             (error)="onImageError($event)"
+             loading="lazy"
+             decoding="async">
+      </div>
+      <div class="album-info">
+        <h3>{{ album.name }}</h3>
+        <p class="artist">{{ album.artists[0]?.name || 'Unknown Artist' }}</p>
+        <p class="release-date">{{ album.release_date | date:'mediumDate' }}</p>
+      </div>
+    </div>
+  </div>
+</div> 

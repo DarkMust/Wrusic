@@ -1,1 +1,126 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global styles for Wrusic */
+
+:root {
+  --primary-color: #8a2be2; /* Bright purple */
+  --primary-light: #a64dff; /* Lighter purple */
+  --primary-dark: #5a1a9c; /* Darker purple */
+  --background-dark: #121212; /* Very dark background */
+  --background-light: #1e1e1e; /* Slightly lighter background */
+  --text-primary: #ffffff; /* White text */
+  --text-secondary: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+  --glass-background: rgba(255, 255, 255, 0.1); /* Transparent white for glass effect */
+  --glass-border: rgba(255, 255, 255, 0.2); /* Slightly more opaque white for borders */
+  --glass-shadow: rgba(0, 0, 0, 0.3); /* Shadow for glass effect */
+  --border-radius: 16px; /* Rounded corners */
+  --card-padding: 20px; /* Padding for cards */
+  --transition-speed: 0.3s; /* Transition speed for animations */
+}
+
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(166, 77, 255, 0.15) 0%, transparent 20%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Glass card effect */
+.glass-card {
+  background: var(--glass-background);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  padding: var(--card-padding);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 var(--glass-shadow);
+  }
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+  
+  &:hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Input styles */
+input, select, textarea {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all var(--transition-speed);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-dark);
+  border-radius: 5px;
+  
+  &:hover {
+    background: var(--primary-color);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --border-radius: 12px;
+    --card-padding: 16px;
+  }
+}

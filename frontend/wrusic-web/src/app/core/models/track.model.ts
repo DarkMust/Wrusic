@@ -2,17 +2,13 @@ import { Artist } from './artist.model';
 import { Album } from './album.model';
 
 export interface Track {
-  id?: number;
-  title: string;
-  description?: string;
-  coverImageUrl?: string;
-  audioUrl?: string;
-  releaseDate?: Date;
-  duration?: number;
-  genre?: string;
-  chartPosition?: number;
-  country?: string;
-  artist?: Artist;
-  albums?: Album[];
-  chartEntries?: any[];
+  id: string;
+  name: string;
+  artists: { id: string; name: string }[];
+  album: {
+    id: string;
+    name: string;
+    images: { url: string }[];
+  };
+  preview_url?: string;
 } 

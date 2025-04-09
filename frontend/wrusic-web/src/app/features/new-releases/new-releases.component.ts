@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MusicService, Album } from '../../core/services/music.service';
+import { CommonModule, DatePipe } from '@angular/common';
+import { MusicService } from '../../core/services/music.service';
+import { Album } from '../../core/models/album.model';
 
 @Component({
   selector: 'app-new-releases',
   templateUrl: './new-releases.component.html',
-  styleUrls: ['./new-releases.component.scss']
+  styleUrls: ['./new-releases.component.scss'],
+  standalone: true,
+  imports: [CommonModule, DatePipe]
 })
 export class NewReleasesComponent implements OnInit {
   newReleases: Album[] = [];
@@ -32,5 +36,10 @@ export class NewReleasesComponent implements OnInit {
         console.error('Error loading new releases:', err);
       }
     });
+  }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = 'assets/images/default-album.svg';
   }
 } 

@@ -1,48 +1,38 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { DatePipe } from '@angular/common';
-
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { NewReleasesComponent } from './features/new-releases/new-releases.component';
 import { ChartsComponent } from './features/charts/charts.component';
+import { NewReleasesComponent } from './features/new-releases/new-releases.component';
+import { ArtistsComponent } from './features/artists/artists.component';
+import { AlbumsComponent } from './features/albums/albums.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    NewReleasesComponent,
-    ChartsComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter([
       { path: '', redirectTo: '/new-releases', pathMatch: 'full' },
       { path: 'new-releases', component: NewReleasesComponent },
-      { path: 'charts', component: ChartsComponent }
+      { path: 'charts', component: ChartsComponent },
+      { path: 'artists', component: ArtistsComponent },
+      { path: 'albums', component: AlbumsComponent }
     ]),
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
-  providers: [DatePipe],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+    provideAnimations(),
+    provideHttpClient(
+      withInterceptors([
+        (req, next) => {
+          // Add CORS headers to all requests
+          const corsReq = req.clone({
+            setHeaders: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Authorization'
+            }
+          });
+          return next(corsReq);
+        }
+      ])
+    )
+  ]
+});

@@ -1,0 +1,23 @@
+<div class="artists-container">
+  <div class="header">
+    <h1>Artists</h1>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="artists-grid" *ngIf="!loading && !error">
+    <div class="artist-card" *ngFor="let artist of artists">
+      <div class="artist-image">
+        <img [src]="artist.images[0]?.url || 'assets/images/default-artist.svg'" 
+             [alt]="artist.name"
+             (error)="onImageError($event)"
+             loading="lazy"
+             decoding="async">
+      </div>
+      <div class="artist-info">
+        <h3>{{ artist.name }}</h3>
+      </div>
+    </div>
+  </div>
+</div> 
